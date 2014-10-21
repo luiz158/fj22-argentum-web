@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="US-ASCII" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+	<h:form>
+		Mensagem: <h:outputText value="#{olaMundoBean.mensagem}"/><br/>
+		Nome: <h:outputText value="#{olaMundoBean.nome}"/><br/>
+		<h:inputText value="#{olaMundoBean.nome}"/>
+		
+		<h:commandButton value="Mudar nome" action="#{olaMundoBean.mudaNome}"></h:commandButton>
+	</h:form>
+</h:body>
 
-</body>
 </html>
