@@ -1,5 +1,7 @@
 package br.com.caelum.argentum;
 
+import static org.junit.Assert.*;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -67,4 +69,5 @@ public class NegociacaoTest {
 		
 		Assert.assertFalse(negociacao.isMesmoDia(segundaData));
 	}
+	
 }
