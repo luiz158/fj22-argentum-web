@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.caelum.argentum.modelo.Candle;
-import br.com.caelum.argentum.modelo.CandlestickFactory;
+import br.com.caelum.argentum.modelo.CandleFactory;
 import br.com.caelum.argentum.modelo.Negociacao;
 
 public class TestaCandlestickFactoryPetrobras {
@@ -16,7 +16,7 @@ public class TestaCandlestickFactoryPetrobras {
 		List<Negociacao> negociacoes = new ArrayList<Negociacao>();
 		negociacoes.add(new Negociacao(30, 0, dataDeHoje));
 		
-		Candle candlestick = new CandlestickFactory().constroiCandleParaData(dataDeHoje, negociacoes);
+		Candle candlestick = new CandleFactory().constroiCandleParaData(dataDeHoje, negociacoes);
 
 		System.out.println(candlestick);
 	}
