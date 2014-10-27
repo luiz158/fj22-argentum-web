@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import br.com.caelum.argentum.modelo.Candlestick;
+import br.com.caelum.argentum.modelo.Candle;
 import br.com.caelum.argentum.modelo.CandlestickFactory;
 import br.com.caelum.argentum.modelo.Negociacao;
 
@@ -19,7 +19,7 @@ public class TestaCandlestickFactory {
 		negociacoes.add(new Negociacao(900, 5, dataDeHoje));
 		negociacoes.add(new Negociacao(300, 3, dataDeHoje));
 		
-		Candlestick candlestick = new CandlestickFactory().constroiCandleParaData(dataDeHoje, negociacoes);
+		Candle candlestick = new CandlestickFactory().constroiCandleParaData(dataDeHoje, negociacoes);
 		
 		System.out.println(candlestick.getMinimo());
 		System.out.println(candlestick.getMaximo());

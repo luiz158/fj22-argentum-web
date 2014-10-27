@@ -8,7 +8,7 @@ public class MediaMovelSimplesTest {
 
 	@Test
 	public void deveriaCalcularAMediaMovelSimples() throws Exception {
-		SerieTemporal serieTemporal = GeradorDeCandles.gera(1, 2, 3, 4, 3, 5, 5, 1);
+		SerieTemporal serieTemporal = GeradorDeSeries.gera(1, 2, 3, 4, 3, 5, 5, 1);
 		MediaMovelSimples mms = new MediaMovelSimples();
 		
 		assertEquals(2, mms.calcula(2, serieTemporal), 0000.1);
