@@ -28,7 +28,25 @@
 		</p:dataTable>
 	</h:form>
 	
-	<p:lineChart value="#{argentumBean.modeloGrafico}" legendPosition="w" title="Indicadores"></p:lineChart>
+	<h:form>
+		<p:panelGrid columns="5">
+			<h:outputText value="Média Móvel"/>
+			<p:selectOneButton value="#{argentumBean.nomeMedia}">
+				<f:selectItem itemLabel="Simples" itemValue="MediaMovelSimples"/>
+				<f:selectItem itemLabel="Ponderada" itemValue="MediaMovelPonderada"/>
+			</p:selectOneButton>
+			
+			<h:outputText value="Indicador"/>
+			<p:selectOneButton value="#{argentumBean.nomeIndicador}">
+				<f:selectItem itemLabel="Abertura" itemValue="IndicadorAbertura"/>
+				<f:selectItem itemLabel="Fechamento" itemValue="IndicadorFechamento"/>
+			</p:selectOneButton>
+			
+			<p:commandButton value="Gerar gráfico" action="#{argentumBean.gerarGrafico}" update=":grafico"/>
+		</p:panelGrid>
+	</h:form>
+	
+	<p:lineChart id="grafico" value="#{argentumBean.modeloGrafico}" legendPosition="w" title="Indicadores"/>
 	
 </h:body>
 </html>

@@ -21,7 +21,12 @@ import br.com.caelum.argentum.ws.ClienteWebService;
 public class ArgentumBean {
 
 	private List<Negociacao> negociacoes;
+	
 	private ChartModel modeloGrafico;
+	
+	private String nomeMedia;
+	
+	private String nomeIndicador;
 	
 	public ArgentumBean() {
 		this.negociacoes = new ClienteWebService().getNegociacoes();
@@ -29,8 +34,16 @@ public class ArgentumBean {
 		SerieTemporal serieTemporal = new SerieTemporal(candles);
 		
 		GeradorModeloGrafico geradorModeloGrafico = new GeradorModeloGrafico(serieTemporal, 2, serieTemporal.getUltimaPosicao());
-		geradorModeloGrafico.plotaIndicador(new MediaMovelPonderada(new IndicadorFechamento()));
+		geradorModeloGrafico.plotaIndicador(defineIndicador());
 		this.modeloGrafico = geradorModeloGrafico.getModeloGrafico();
+	}
+
+	private MediaMovelPonderada defineIndicador() {
+		return new MediaMovelPonderada(new IndicadorFechamento());
+	}
+	
+	public void gerarGrafico() {
+		System.out.println("Platando grafico de Media: " + nomeMedia + " com Indicador: " + nomeIndicador);
 	}
 	
 	public List<Negociacao> getNegociacoes() {
@@ -39,6 +52,22 @@ public class ArgentumBean {
 	
 	public ChartModel getModeloGrafico() {
 		return modeloGrafico;
+	}
+
+	public String getNomeMedia() {
+		return nomeMedia;
+	}
+
+	public void setNomeMedia(String nomeMedia) {
+		this.nomeMedia = nomeMedia;
+	}
+
+	public String getNomeIndicador() {
+		return nomeIndicador;
+	}
+
+	public void setNomeIndicador(String nomeIndicador) {
+		this.nomeIndicador = nomeIndicador;
 	}
 	
 }
