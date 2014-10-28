@@ -1,7 +1,8 @@
 package br.com.caelum.argentum.indicadores;
 
-public class MediaMovelPonderada {
+public class MediaMovelPonderada implements Indicador {
 
+	@Override
 	public double calcula(int dia, SerieTemporal serieTemporal) {
 		double soma = 0;
 		int mult = 3;
@@ -13,4 +14,9 @@ public class MediaMovelPonderada {
 		return soma / 6;
 	}
 
+	@Override
+	public String toString() {
+		return "MMP - Fechamento";
+	}
+	
 }
