@@ -9,7 +9,7 @@ public class MediaMovelSimplesTest {
 	@Test
 	public void deveriaCalcularAMediaMovelSimples() throws Exception {
 		SerieTemporal serieTemporal = GeradorDeSeries.gera(1, 2, 3, 4, 3, 5, 5, 1);
-		Indicador mms = new MediaMovelSimples();
+		Indicador mms = new MediaMovelSimples(new IndicadorFechamento());
 		
 		assertEquals(2, mms.calcula(2, serieTemporal), 0000.1);
 		assertEquals(3, mms.calcula(3, serieTemporal), 0000.1);
