@@ -8,8 +8,12 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.ChartModel;
 
 import br.com.caelum.argentum.grafico.GeradorModeloGrafico;
+import br.com.caelum.argentum.indicadores.Indicador;
+import br.com.caelum.argentum.indicadores.IndicadorAbertura;
+import br.com.caelum.argentum.indicadores.IndicadorFactory;
 import br.com.caelum.argentum.indicadores.IndicadorFechamento;
 import br.com.caelum.argentum.indicadores.MediaMovelPonderada;
+import br.com.caelum.argentum.indicadores.MediaMovelSimples;
 import br.com.caelum.argentum.indicadores.SerieTemporal;
 import br.com.caelum.argentum.modelo.Candle;
 import br.com.caelum.argentum.modelo.CandleFactory;
@@ -30,20 +34,42 @@ public class ArgentumBean {
 	
 	public ArgentumBean() {
 		this.negociacoes = new ClienteWebService().getNegociacoes();
+	}
+
+	private Indicador defineIndicador() {
+		IndicadorFactory factory = new IndicadorFactory(nomeMedia, nomeIndicador);
+		return factory.criaIndicador();
+//		return new MediaMovelPonderada(new IndicadorFechamento());
+	}
+	
+	public void gerarGrafico() {
 		List<Candle> candles = new CandleFactory().constroidCandles(negociacoes);
 		SerieTemporal serieTemporal = new SerieTemporal(candles);
 		
 		GeradorModeloGrafico geradorModeloGrafico = new GeradorModeloGrafico(serieTemporal, 2, serieTemporal.getUltimaPosicao());
 		geradorModeloGrafico.plotaIndicador(defineIndicador());
-		this.modeloGrafico = geradorModeloGrafico.getModeloGrafico();
+		this.modeloGrafico = geradorModeloGrafico.getModeloGrafico();		
+//		return geraGraficoDaFormaAntiga();
 	}
 
-	private MediaMovelPonderada defineIndicador() {
-		return new MediaMovelPonderada(new IndicadorFechamento());
-	}
-	
-	public void gerarGrafico() {
-		System.out.println("Platando grafico de Media: " + nomeMedia + " com Indicador: " + nomeIndicador);
+	@SuppressWarnings("unused")
+	private Indicador geraGraficoDaFormaAntiga() {
+		if (this.nomeMedia.equals("MediaMovelSimples")) {
+			if (this.nomeIndicador.equals("IndicadorAbertura")) {
+				return new MediaMovelSimples(new IndicadorAbertura());
+			} 
+			if (this.nomeIndicador.equals("IndicadorFechamento")) {
+				return new MediaMovelSimples(new IndicadorFechamento());
+			} 
+		} else if (this.nomeMedia.equals("MediaMovelPonderada")) {
+			if (this.nomeIndicador.equals("IndicadorAbertura")) {
+				return new MediaMovelPonderada(new IndicadorAbertura());
+			}
+			if (this.nomeIndicador.equals("IndicadorFechamento")) {
+				return new MediaMovelPonderada(new IndicadorFechamento());
+			}
+		}
+		return new MediaMovelSimples(new IndicadorFechamento());
 	}
 	
 	public List<Negociacao> getNegociacoes() {

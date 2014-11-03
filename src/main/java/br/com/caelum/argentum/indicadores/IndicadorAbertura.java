@@ -3,8 +3,8 @@ package br.com.caelum.argentum.indicadores;
 public class IndicadorAbertura implements Indicador {
 
 	@Override
-	public double calcula(int dia, SerieTemporal serieTemporal) {
-		return serieTemporal.getCandle(dia).getAbertura();
+	public double calcula(int posicao, SerieTemporal serieTemporal) {
+		return serieTemporal.getCandle(posicao).getAbertura();
 	}
 	
 	@Override

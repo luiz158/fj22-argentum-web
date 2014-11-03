@@ -1,5 +1,7 @@
 package br.com.caelum.argentum;
 
+import static org.junit.Assert.*;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -66,6 +68,28 @@ public class NegociacaoTest {
 		Negociacao negociacao = new Negociacao(100, 10, primeiraData);
 		
 		Assert.assertFalse(negociacao.isMesmoDia(segundaData));
+	}
+	
+	@Test
+	public void naoDeveriaModificarADataDaNegociacaoNoGetData() throws Exception {
+		Calendar dataAtual = Calendar.getInstance();
+		dataAtual.set(Calendar.DAY_OF_MONTH, 15);
+		Negociacao negociacao = new Negociacao(100, 2, dataAtual);
+		
+		negociacao.getData().add(Calendar.DAY_OF_MONTH, 1);
+		
+		assertEquals(15, negociacao.getData().get(Calendar.DAY_OF_MONTH));
+	}
+	
+	@Test
+	public void naoDeveriaModificarADataDaNegociacaoPeloConstrutor() throws Exception {
+		Calendar dataAtual = Calendar.getInstance();
+		dataAtual.set(Calendar.DAY_OF_MONTH, 15);
+		
+		Negociacao negociacao = new Negociacao(100, 1, dataAtual);
+		dataAtual.set(Calendar.DAY_OF_MONTH, 10);
+		
+		assertEquals(15, negociacao.getData().get(Calendar.DAY_OF_MONTH));
 	}
 	
 }

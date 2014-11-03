@@ -16,7 +16,6 @@ public class MediaMovelPonderada implements Indicador {
 			soma += outroIndicador.calcula(i, serieTemporal) * mult;
 			mult--;
 		}
-		System.out.println(soma);
 		return soma / 6;
 	}
 

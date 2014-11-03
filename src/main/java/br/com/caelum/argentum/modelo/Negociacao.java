@@ -14,7 +14,7 @@ public class Negociacao {
 		if (data == null) {
 			throw new IllegalArgumentException("Data nao pode ser nula");
 		}
-		this.data = data;
+		this.data = (Calendar) data.clone();
 		this.preco = preco;
 		this.quantidade = quantidade;
 	}
@@ -35,6 +35,7 @@ public class Negociacao {
 //		Fazer isso na mao com o pessoal
 //		Calendar data = Calendar.getInstance();
 //		data.setTime(this.data.getTime());
+//		return data;
 		return (Calendar) this.data.clone();
 	}
 
